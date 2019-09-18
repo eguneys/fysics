@@ -48,28 +48,28 @@ export default function Hero(play, r) {
   let facing = 1;
   let previousUp;
 
-  let dashDir = 0,
+  let dashUsed = false,
+      dashDir = 0,
       dashTicker = new Ticker();
 
   this.updateMovement = (delta, e) => {
     let speed = phy.gravityY() * -1;
 
-    dashTicker.update(delta);
+    let hSpeed = phy.gravityY();
 
-    if (e.right) {
-      facing = 1;
-      phy.force({ x: speed });
-    } else if (e.left) {
-      facing = -1;
-      phy.force({ x: -speed });
+    if (!grounded) {
+      hSpeed *= 0.5;
     } else {
-      phy.force({ x: 0 });
+      dashUsed = false;
     }
+
+    dashTicker.update(delta);
 
     if (e.up) {
 
-      if (!dashTicker.running()) {
+      if (!dashUsed) {
         if (!previousUp && !grounded) {
+          dashUsed = true;
           dashDir = facing;
           dashTicker.start();
         } else {
@@ -80,11 +80,21 @@ export default function Hero(play, r) {
       previousUp = e.up;
     } else {
       previousUp = undefined;
-      phy.force({ y: -speed });
+      phy.force({ y: -speed *0.3 });
+    }
+
+    if (e.right) {
+      facing = 1;
+      phy.force({ x: -hSpeed });
+    } else if (e.left) {
+      facing = -1;
+      phy.force({ x: hSpeed });
+    } else {
+      phy.force({ x: 0 });
     }
 
     if (dashTicker.running()) {
-      if (dashTicker.value() > 0.8) {
+      if (dashTicker.value() > 0.4) {
         dashTicker.stop();
       }
       phy.force({ y: speed , x: dashDir * speed * 3.5 });

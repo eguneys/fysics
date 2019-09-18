@@ -50,17 +50,24 @@ export default function LevelGen() {
   const generateMap = () => {
 
     addFloor(seqHeight);
-    seqHeight += 1;
-    seqHeight += 2;
+    addH(seqHeight, 3);
 
-    addL(0, seqHeight, cols * 0.3);
-    addL(cols - cols * 0.3, seqHeight, cols * 0.3);
-    seqHeight += 1;
-    seqHeight += 2;
+    for (let i = 0; i < 10; i++) {
+      addL(0, seqHeight, cols * 0.3);
+      addL(cols - cols * 0.3, seqHeight, cols * 0.3);
+      addH(seqHeight, 3);
 
-    addL(cols * 0.3, seqHeight, cols * 0.3);
-    seqHeight += 1;
+      addL(cols * 0.3, seqHeight, cols * 0.3);
+      addH(seqHeight, 3);
+    }
+  };
 
+  const addH = (y, height) => {
+    for (let i = 0; i < height; i++) {
+      addWall(0, y + i);
+      addWall(cols - 1, y + i);
+    }
+    seqHeight += height;
   };
 
   const addL = (x, y, width) => {

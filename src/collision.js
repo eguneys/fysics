@@ -9,15 +9,16 @@ export function dimensions(x, y, w, h = w) {
   };
 };
 
-export function sides({ left, right, top, bottom }) {
+export function sides({ left, right, top, bottom }, tileSize = 40) {
+  let q = tileSize * 0.5;
   return {
-    left: [[left, top],
-             [left, bottom]],
-    right: [[right, top],
-              [right, bottom]],
-    top: [[left, top],
-            [right, top]],
-    bottom: [[left, bottom],
-               [right, bottom]]
+    left: [[left, top - q],
+             [left, bottom + q]],
+    right: [[right, top - q],
+              [right, bottom + q]],
+    top: [[left + q, top],
+            [right - q, top]],
+    bottom: [[left + q, bottom],
+               [right - q, bottom]]
   };
 }
