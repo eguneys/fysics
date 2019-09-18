@@ -3604,6 +3604,11 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+outilz@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/outilz/-/outilz-1.0.1.tgz#ae8bc5eb4e48be224f60cd55054d098d7176feb7"
+  integrity sha512-WZO14qmMfSkWYdp2c9CfKvePtYMHslGwrinRFQS//5GKKDyNcyd6pPKNqaI3UCIGsdlHNVByCzbP19SONzMh+g==
+
 p-defer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-defer/-/p-defer-1.0.0.tgz#9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c"

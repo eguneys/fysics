@@ -13,7 +13,7 @@ export function app(element, options) {
 
   const renderer = new Renderer(canvas);
 
-  const play = new Play(renderer);
+  const play = new Play(renderer, events);
 
   new Loop(delta => {
     events.update(delta);

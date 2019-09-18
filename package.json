@@ -22,6 +22,7 @@
   "dependencies": {
     "colourz": "^1.0.0",
     "loopz": "^1.0.1",
-    "mutilz": "^1.0.0"
+    "mutilz": "^1.0.0",
+    "outilz": "^1.0.1"
   }
 }

@@ -12,7 +12,7 @@ export default function Renderer(canvas) {
   
   const g = new Graphics(canvas);
 
-  this.drawRect = (x, y, w, h, color) =>
+  this.drawRect = (x, y, w, h, color = 'black') =>
   g.raw(ctx => {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, w, h);

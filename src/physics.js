@@ -9,10 +9,11 @@ export default function Physics(opts) {
             acc: vec3(0),
             theta: vec3(0),
             vTh: vec3(0),
-            gravity: vec3(0, 10, 0),
+            friction: vec3(-0.2),
+            gravity: vec3(0, -80, 0),
             ...opts };
 
-  let { pos, vel, acc, theta, vTh, gravity } = opts;
+  let { pos, vel, acc, theta, vTh, friction, gravity } = opts;
 
   this.pos = ({ x = pos[0], y = pos[1], z = pos[2] }) => {
     pos[0] = x;
@@ -20,38 +21,16 @@ export default function Physics(opts) {
     pos[2] = z;
   };
 
-  this.vel = ({ x = vel[0], y = vel[1], z = vel[2] }) => {
-    vel[0] = x;
-    vel[1] = y;
-    vel[2] = z;
-  };
-
-  this.acc = ({ x = acc[0], y = acc[1], z = acc[2] }) => {
+  this.force = ({ x = acc[0], y = acc[1], z = acc[2] }) => {
     acc[0] = x;
     acc[1] = y;
     acc[2] = z;
   };
 
-  this.rot = ({ x = theta[0], y = theta[1], z = theta[2] }) => {
-    theta[0] = x;
-    theta[1] = y;
-    theta[2] = z;
-  };
+  this.forceY = () => acc[1];
+  this.forceX = () => acc[0];
 
-  this.vrot = ({ x = vTh[0], y = vTh[1], z = vTh[2] }) => {
-    vTh[0] = x;
-    vTh[1] = y;
-    vTh[2] = z;
-  };
-
-  this.grav = grav => {
-    gravity[1] = grav;
-  };
-
-  this.gravity = () => gravity[1];
-
-  this.falling = () => gravity[1] > 0;
-  this.flying = () => gravity[1] < 0;
+  this.gravityY = () => gravity[1];
 
   this.values = (_pos = pos, _theta = theta) => {
 
@@ -70,7 +49,10 @@ export default function Physics(opts) {
 
     let newTheta = v.addScale(theta, vTh, dt);
 
-    let newVel = v.addScale(vel, acc, dt);
+    let newVel = vel;
+
+    newVel = v.add(newVel, v.mul(newVel, friction));
+    newVel = v.addScale(newVel, acc, dt);
     newVel = v.addScale(newVel, gravity, dt);
 
     if ((collisions.top && newVel[1] < 0) ||
@@ -100,5 +82,4 @@ export default function Physics(opts) {
   this.update = delta => {
     this.applyUpdate(this.calculateUpdate(delta));
   };
-
 }
