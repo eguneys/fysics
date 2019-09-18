@@ -10,12 +10,12 @@ export function dimensions(x, y, w, h = w) {
 };
 
 export function sides({ left, right, top, bottom }, tileSize = 40) {
-  let q = tileSize * 0.5;
+  let q = tileSize * 0.2;
   return {
-    left: [[left, top - q],
-             [left, bottom + q]],
-    right: [[right, top - q],
-              [right, bottom + q]],
+    left: [[left, top + q],
+             [left, bottom - q]],
+    right: [[right, top + q],
+              [right, bottom - q]],
     top: [[left + q, top],
             [right - q, top]],
     bottom: [[left + q, bottom],

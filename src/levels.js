@@ -45,7 +45,7 @@ export default function LevelGen() {
 
   this.walls = walls;
 
-  this.heroPos = [0, 2];
+  this.heroPos = [1, 2];
 
   const generateMap = () => {
 

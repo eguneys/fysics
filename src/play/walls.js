@@ -35,9 +35,8 @@ export default function Walls(play, r) {
 
     let collisions = objMap(
       tileKeysForSides, (_, tileKeys) => 
-      tileKeys.every(key => walls[key])
+      tileKeys.some(key => walls[key])
     );
-
 
     play.hero.updateCollide(delta, collisions);
   };
