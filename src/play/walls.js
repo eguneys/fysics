@@ -49,7 +49,7 @@ export default function Walls(play, r) {
       if (tile) {
         let [x, y] = le.tilePos2worldPos(pos, tileSize);
         y = height - y - tileSize;
-        r.drawRect(x, y, tileSize, tileSize);
+        r.drawRect(x, y, tileSize, tileSize, colour.css());
       }
     });
 

@@ -65,22 +65,20 @@ export default function Hero(play, r) {
 
     dashTicker.update(delta);
 
-    if (e.up) {
+    if (e.up && !dashUsed) {
 
-      if (!dashUsed) {
-        if (!previousUp && !grounded) {
-          dashUsed = true;
-          dashDir = facing;
-          dashTicker.start();
-        } else {
-          phy.force({ y: speed * 2.5 * (1 - m.smoothstep(1, 3, e.up)) });
-        }
+      if (!previousUp && !grounded) {
+        dashUsed = true;
+        dashDir = facing;
+        dashTicker.start();
+      } else {
+        phy.force({ y: speed * 2.5 * (1 - m.smoothstep(1, 3, e.up)) });
       }
 
       previousUp = e.up;
     } else {
       previousUp = undefined;
-      phy.force({ y: -speed *0.3 });
+      phy.force({ y: -speed * 0.0 });
     }
 
     if (e.right) {

@@ -14,6 +14,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6",
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "colourz": "^1.0.0",
+    "copy-webpack-plugin": "^5.0.4",
     "loopz": "^1.0.1",
     "mutilz": "^1.0.0",
     "outilz": "^1.0.1"

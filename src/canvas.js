@@ -12,4 +12,6 @@ export default function Canvas(element) {
   this.aspect = this.width / this.height;
 
   this.canvas = canvas;
+
+  this.bounds = canvas.getBoundingClientRect();
 };
